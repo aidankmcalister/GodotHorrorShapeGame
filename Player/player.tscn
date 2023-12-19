@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://2iygctujwii4"]
+[gd_scene load_steps=5 format=3 uid="uid://2iygctujwii4"]
 
+[ext_resource type="Script" path="res://Player/player.gd" id="1_l5v4i"]
 [ext_resource type="Texture2D" uid="uid://ct6c68cvahfne" path="res://Shapes/Square2.png" id="1_qthj5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4d1ei"]
@@ -9,6 +10,7 @@ radius = 13.0
 size = Vector2(32, 32)
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_l5v4i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
