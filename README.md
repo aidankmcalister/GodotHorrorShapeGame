@@ -21,7 +21,7 @@ This project is a narrative-driven horror game where players control a white cub
 - *This section is left blank for future development.*
 
 ## Contribution
-Contributions to the project are welcome. If you have ideas for gameplay mechanics, story elements, or any other improvements, please feel free to fork the repository and submit a pull request.
+Contributions to the project are welcome. If you have ideas for gameplay mechanics, story elements, or any other improvements, please feel free to fork the repository and submit a pull request or contact me.
 
 ## Conclusion
 This project aims to create an immersive horror experience, challenging players to navigate the environment and interact strategically with shapes to unravel the story. The visual style enhances the eerie atmosphere, creating a unique and compelling gameplay experience.
