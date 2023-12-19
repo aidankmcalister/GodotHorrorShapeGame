@@ -24,3 +24,5 @@ shape = SubResource("CircleShape2D_4d1ei")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCollision"]
 shape = SubResource("RectangleShape2D_r0hbv")
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
