@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 400
-@export var friction = 6
+@export var friction = 8
 @export var acceleration = 5
 
 func _physics_process(delta):

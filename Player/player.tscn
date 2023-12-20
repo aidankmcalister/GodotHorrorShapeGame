@@ -1,13 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://2iygctujwii4"]
+[gd_scene load_steps=7 format=3 uid="uid://2iygctujwii4"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_l5v4i"]
 [ext_resource type="Texture2D" uid="uid://ct6c68cvahfne" path="res://Shapes/Square2.png" id="1_qthj5"]
+[ext_resource type="Shader" path="res://main.gdshader" id="3_vpo73"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4d1ei"]
 radius = 13.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0hbv"]
 size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xke7m"]
+shader = ExtResource("3_vpo73")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.17
+shader_parameter/scanlines_width = 0.056
+shader_parameter/grille_opacity = 0.272
+shader_parameter/resolution = Vector2(2560, 1440)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 25.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.01
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 2.0
+shader_parameter/static_noise_intensity = 0.1
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_l5v4i")
@@ -26,3 +51,12 @@ shape = SubResource("CircleShape2D_4d1ei")
 shape = SubResource("RectangleShape2D_r0hbv")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="PlayerCamera"]
+z_index = 2
+material = SubResource("ShaderMaterial_xke7m")
+offset_left = -232.0
+offset_top = -128.0
+offset_right = -175.0
+offset_bottom = -73.0
+scale = Vector2(8.09492, 4.66436)
