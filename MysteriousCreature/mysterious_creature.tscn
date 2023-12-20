@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://smo44wvq2qwt"]
 
-[ext_resource type="Texture2D" uid="uid://bthr0bn71avol" path="res://Shapes/Circle 2.png" id="1_0hf01"]
+[ext_resource type="Texture2D" uid="uid://ct6c68cvahfne" path="res://Shapes/Square2.png" id="1_r3nmx"]
 
 [node name="MysteriousCreature" type="Node2D"]
-position = Vector2(2.08165e-12, 2.08165e-12)
+position = Vector2(2.08165e-12, 320)
 scale = Vector2(0.3, 0.3)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_0hf01")
+texture = ExtResource("1_r3nmx")

@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://2iygctujwii4"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_l5v4i"]
-[ext_resource type="Texture2D" uid="uid://ct6c68cvahfne" path="res://Shapes/Square2.png" id="1_qthj5"]
+[ext_resource type="Texture2D" uid="uid://bthr0bn71avol" path="res://Shapes/Circle 2.png" id="2_io82r"]
 [ext_resource type="Shader" path="res://main.gdshader" id="3_vpo73"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4d1ei"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_mund5"]
 radius = 13.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0hbv"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrtcj"]
+radius = 17.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xke7m"]
 shader = ExtResource("3_vpo73")
@@ -40,15 +40,15 @@ script = ExtResource("1_l5v4i")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("1_qthj5")
+texture = ExtResource("2_io82r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_4d1ei")
+shape = SubResource("CircleShape2D_mund5")
 
 [node name="AreaCollision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCollision"]
-shape = SubResource("RectangleShape2D_r0hbv")
+shape = SubResource("CircleShape2D_vrtcj")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 
