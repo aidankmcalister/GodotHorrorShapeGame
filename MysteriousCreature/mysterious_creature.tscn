@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://smo44wvq2qwt"]
+[gd_scene load_steps=3 format=3 uid="uid://smo44wvq2qwt"]
 
+[ext_resource type="Script" path="res://MysteriousCreature/creature.gd" id="1_ieipf"]
 [ext_resource type="Texture2D" uid="uid://ct6c68cvahfne" path="res://Shapes/Square2.png" id="1_r3nmx"]
 
 [node name="MysteriousCreature" type="Node2D"]
 position = Vector2(2.08165e-12, 320)
 scale = Vector2(0.3, 0.3)
+script = ExtResource("1_ieipf")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

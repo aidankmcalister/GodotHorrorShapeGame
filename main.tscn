@@ -1,15 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc7j7om1mmerv"]
+[gd_scene load_steps=5 format=3 uid="uid://bc7j7om1mmerv"]
 
 [ext_resource type="PackedScene" uid="uid://2iygctujwii4" path="res://Player/player.tscn" id="1_1o66t"]
 [ext_resource type="Texture2D" uid="uid://ct6c68cvahfne" path="res://Shapes/Square2.png" id="2_lobnt"]
 [ext_resource type="PackedScene" uid="uid://smo44wvq2qwt" path="res://MysteriousCreature/mysterious_creature.tscn" id="3_f07h8"]
+[ext_resource type="PackedScene" uid="uid://cdn1jyvl6wtxn" path="res://Item/item.tscn" id="4_5avma"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_1o66t")]
 position = Vector2(576, 192)
 
-[node name="Square2" type="Sprite2D" parent="."]
+[node name="TemporaryMapBorder" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(576, 320)
 scale = Vector2(2, 2)
@@ -17,3 +18,6 @@ texture = ExtResource("2_lobnt")
 
 [node name="MysteriousCreature" parent="." instance=ExtResource("3_f07h8")]
 position = Vector2(576, 296)
+
+[node name="Item" parent="." instance=ExtResource("4_5avma")]
+position = Vector2(576, 104)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdn1jyvl6wtxn"]
+
+[ext_resource type="Texture2D" uid="uid://botdj7xdibstb" path="res://Shapes/Square.png" id="1_auadc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umnnl"]
+
+[node name="Item" type="RigidBody2D" groups=["pushable"]]
+gravity_scale = 1.66533e-16
+
+[node name="Square" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_auadc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_umnnl")
