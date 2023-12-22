@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://brqd6ljovnpa3"]
+
+[ext_resource type="Shader" path="res://Player/vhs.gdshader" id="1_td331"]
+[ext_resource type="Shader" path="res://main.gdshader" id="2_23rrp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vog7h"]
+shader = ExtResource("1_td331")
+shader_parameter/range = 0.05
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.0088
+shader_parameter/offsetIntensity = 0.03
+shader_parameter/colorOffsetIntensity = 1.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dahv5"]
+shader = ExtResource("2_23rrp")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.17
+shader_parameter/scanlines_width = 0.056
+shader_parameter/grille_opacity = 0.272
+shader_parameter/resolution = Vector2(2560, 1440)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 25.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.01
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 2.0
+shader_parameter/static_noise_intensity = 0.1
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Shaders" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Shaders"]
+offset = Vector2(-100, 2.08165e-12)
+transform = Transform2D(1, 0, 0, 1, -100, 2.08165e-12)
+
+[node name="GlitchShader" type="ColorRect" parent="Shaders/CanvasLayer"]
+visible = false
+z_as_relative = false
+material = SubResource("ShaderMaterial_vog7h")
+offset_left = 100.0
+offset_top = 1.0
+offset_right = 157.0
+offset_bottom = 56.0
+scale = Vector2(8.09492, 4.66436)
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="Shaders"]
+
+[node name="CRT Shader" type="ColorRect" parent="Shaders/CanvasLayer2"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_dahv5")
+offset_right = 57.0
+offset_bottom = 55.0
+scale = Vector2(8.09492, 4.66436)
+metadata/_edit_use_anchors_ = true
+
+[node name="Dialogue" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Abilities" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Abilities"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 72.0
+offset_bottom = 72.0

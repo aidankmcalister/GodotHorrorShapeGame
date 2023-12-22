@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2nmsrl2ikrwr"]
+
+[ext_resource type="Texture2D" uid="uid://botdj7xdibstb" path="res://Shapes/Square.png" id="1_j6bxy"]
+[ext_resource type="Script" path="res://Levels/starting_area.gd" id="1_qw2cv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iq8ki"]
+size = Vector2(512, 512)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7l3sm"]
+polygon = PackedVector2Array(-266.666, 255.924, -266.666, -255.924, 266.667, -255.924, 266.667, 255.924)
+
+[sub_resource type="Gradient" id="Gradient_mence"]
+offsets = PackedFloat32Array(0, 0.665584)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8xtbp"]
+gradient = SubResource("Gradient_mence")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1f35c"]
+radius = 32.0
+
+[node name="StartingArea" type="Node2D"]
+script = ExtResource("1_qw2cv")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall1" type="StaticBody2D" parent="Walls"]
+position = Vector2(376, 168)
+scale = Vector2(0.03, 0.844)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Wall1"]
+texture = ExtResource("1_j6bxy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall1"]
+shape = SubResource("RectangleShape2D_iq8ki")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Wall1"]
+occluder = SubResource("OccluderPolygon2D_7l3sm")
+
+[node name="Wall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(776, 168)
+scale = Vector2(0.03, 0.844)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Wall2"]
+texture = ExtResource("1_j6bxy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
+shape = SubResource("RectangleShape2D_iq8ki")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Wall2"]
+occluder = SubResource("OccluderPolygon2D_7l3sm")
+
+[node name="Wall3" type="StaticBody2D" parent="Walls"]
+position = Vector2(576, -40.4)
+rotation = 1.5708
+scale = Vector2(0.03, 0.78)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Wall3"]
+texture = ExtResource("1_j6bxy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3"]
+shape = SubResource("RectangleShape2D_iq8ki")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Wall3"]
+occluder = SubResource("OccluderPolygon2D_7l3sm")
+
+[node name="Wall4" type="StaticBody2D" parent="Walls"]
+position = Vector2(576, 376.5)
+rotation = 1.5708
+scale = Vector2(0.03, 0.78)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Wall4"]
+texture = ExtResource("1_j6bxy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall4"]
+shape = SubResource("RectangleShape2D_iq8ki")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Wall4"]
+occluder = SubResource("OccluderPolygon2D_7l3sm")
+
+[node name="DepositZone" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="DepositZone"]
+position = Vector2(576, 368)
+energy = 2.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_8xtbp")
+texture_scale = 2.0
+
+[node name="Area2D" type="Area2D" parent="DepositZone"]
+position = Vector2(576, 376)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DepositZone/Area2D"]
+shape = SubResource("CircleShape2D_1f35c")
+
+[connection signal="body_entered" from="DepositZone/Area2D" to="." method="_on_area_2d_body_entered"]

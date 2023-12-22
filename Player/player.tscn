@@ -1,14 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://2iygctujwii4"]
+[gd_scene load_steps=11 format=3 uid="uid://2iygctujwii4"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_l5v4i"]
-[ext_resource type="Texture2D" uid="uid://bthr0bn71avol" path="res://Shapes/Circle 2.png" id="2_io82r"]
+[ext_resource type="Texture2D" uid="uid://clgarsj0uidjy" path="res://Shapes/Circle.png" id="2_0xu24"]
+[ext_resource type="Texture2D" uid="uid://pn6v7mvdl6ew" path="res://player_light.tres" id="3_5f6tq"]
 [ext_resource type="Shader" path="res://main.gdshader" id="3_vpo73"]
+[ext_resource type="Texture2D" uid="uid://cun7lsv2kfmin" path="res://light_cone.jpeg" id="4_piivh"]
+[ext_resource type="Shader" path="res://Player/vhs.gdshader" id="6_eds2h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mund5"]
 radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vrtcj"]
 radius = 17.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75c0e"]
+shader = ExtResource("6_eds2h")
+shader_parameter/range = 0.05
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.0088
+shader_parameter/offsetIntensity = 0.03
+shader_parameter/colorOffsetIntensity = 1.3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xke7m"]
 shader = ExtResource("3_vpo73")
@@ -40,24 +51,69 @@ script = ExtResource("1_l5v4i")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_io82r")
+texture = ExtResource("2_0xu24")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_mund5")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -2.27374e-13)
+scale = Vector2(4.5, 4.5)
+energy = 0.7
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("3_5f6tq")
+offset = Vector2(2.08165e-12, 2.08165e-12)
+texture_scale = 1.6
+
+[node name="FlashlightBox" type="Node2D" parent="."]
+
+[node name="Flashlight" type="PointLight2D" parent="FlashlightBox"]
+position = Vector2(9, 70)
+rotation = -1.5708
+scale = Vector2(4.5, 8.77989)
+energy = 1.5
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("4_piivh")
+offset = Vector2(2.08165e-12, 2.08165e-12)
+texture_scale = 0.09
+
 [node name="AreaCollision" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCollision"]
 shape = SubResource("CircleShape2D_vrtcj")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 
-[node name="CRT Shader" type="ColorRect" parent="PlayerCamera"]
+[node name="CanvasLayer" type="CanvasLayer" parent="PlayerCamera"]
+visible = false
+offset = Vector2(-100, 2.08165e-12)
+transform = Transform2D(1, 0, 0, 1, -100, 2.08165e-12)
+
+[node name="GlitchShader" type="ColorRect" parent="PlayerCamera/CanvasLayer"]
+visible = false
 z_index = 2
+z_as_relative = false
+material = SubResource("ShaderMaterial_75c0e")
+offset_left = -131.0
+offset_top = -127.0
+offset_right = -74.0
+offset_bottom = -72.0
+scale = Vector2(8.09492, 4.66436)
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="PlayerCamera"]
+visible = false
+
+[node name="CRT Shader" type="ColorRect" parent="PlayerCamera/CanvasLayer2"]
+visible = false
+z_index = 3
+z_as_relative = false
 material = SubResource("ShaderMaterial_xke7m")
 offset_left = -231.0
 offset_top = -128.0
 offset_right = -174.0
 offset_bottom = -73.0
 scale = Vector2(8.09492, 4.66436)
+metadata/_edit_use_anchors_ = true

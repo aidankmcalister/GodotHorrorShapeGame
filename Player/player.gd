@@ -6,9 +6,25 @@ extends CharacterBody2D
 var targetRotation = 0.0
 var rotationSpeed = 5.0
 var push_force = 5
+var look = true
+
+#Items / Abilities
+
+var has_cloak = false
+var has_flashlight = false
 
 func _physics_process(delta):
 	player_movement(delta)
+	
+	if has_cloak:
+		pass
+		
+	if has_flashlight:
+		$FlashlightBox.show()
+		if look:
+			$FlashlightBox.look_at(get_global_mouse_position())
+	else:
+		$FlashlightBox.hide()
 
 func get_input(_delta):
 	var input = Vector2()
@@ -29,7 +45,3 @@ func player_movement(delta):
 	else:
 		velocity = velocity.lerp(Vector2.ZERO, friction * delta)
 	move_and_slide()
-	for i in get_slide_collision_count():
-		var c = get_slide_collision(i)
-		if c.get_collider() is RigidBody2D:
-			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)

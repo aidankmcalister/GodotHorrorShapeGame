@@ -1,112 +1,44 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc7j7om1mmerv"]
+[gd_scene load_steps=10 format=3 uid="uid://bc7j7om1mmerv"]
 
 [ext_resource type="PackedScene" uid="uid://2iygctujwii4" path="res://Player/player.tscn" id="1_1o66t"]
+[ext_resource type="Script" path="res://main.gd" id="1_3e7py"]
 [ext_resource type="PackedScene" uid="uid://smo44wvq2qwt" path="res://MysteriousCreature/mysterious_creature.tscn" id="3_f07h8"]
 [ext_resource type="PackedScene" uid="uid://cdn1jyvl6wtxn" path="res://ShapeItems/square_item.tscn" id="4_5avma"]
 [ext_resource type="PackedScene" uid="uid://c1dgby8vq1fy6" path="res://ShapeItems/triangle_item.tscn" id="5_caer7"]
 [ext_resource type="PackedScene" uid="uid://dwd275gp0rypg" path="res://ShapeItems/hexagon_item.tscn" id="6_excdg"]
-[ext_resource type="Texture2D" uid="uid://botdj7xdibstb" path="res://Shapes/Square.png" id="6_kv2o3"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iq8ki"]
-size = Vector2(512, 512)
+[ext_resource type="PackedScene" uid="uid://d2nmsrl2ikrwr" path="res://Levels/starting_area.tscn" id="7_xan31"]
+[ext_resource type="PackedScene" uid="uid://brqd6ljovnpa3" path="res://ui/main_ui.tscn" id="8_jutq7"]
+[ext_resource type="Texture2D" uid="uid://d3yqdnyob7ww6" path="res://gray square.png" id="9_jw3lc"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_3e7py")
 
-[node name="Player" parent="." instance=ExtResource("1_1o66t")]
+[node name="MainUI" parent="." instance=ExtResource("8_jutq7")]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="Player" parent="CanvasGroup" instance=ExtResource("1_1o66t")]
 position = Vector2(576, 192)
 
-[node name="MysteriousCreature" parent="." instance=ExtResource("3_f07h8")]
-position = Vector2(576, 296)
+[node name="MysteriousCreature" parent="CanvasGroup" instance=ExtResource("3_f07h8")]
+position = Vector2(576, 528)
 
-[node name="SquareItem" parent="." instance=ExtResource("4_5avma")]
+[node name="SquareItem" parent="CanvasGroup" instance=ExtResource("4_5avma")]
 position = Vector2(576, 112)
 
-[node name="TriangleItem" parent="." instance=ExtResource("5_caer7")]
+[node name="TriangleItem" parent="CanvasGroup" instance=ExtResource("5_caer7")]
 position = Vector2(424, 272)
 
-[node name="HexagonItem" parent="." instance=ExtResource("6_excdg")]
+[node name="HexagonItem" parent="CanvasGroup" instance=ExtResource("6_excdg")]
 position = Vector2(720, 272)
 
-[node name="Walls" type="Node2D" parent="."]
+[node name="StartingArea" parent="CanvasGroup" instance=ExtResource("7_xan31")]
 
-[node name="Wall1" type="StaticBody2D" parent="Walls"]
-position = Vector2(384, 208)
-scale = Vector2(0.02, 0.8)
-metadata/_edit_group_ = true
+[node name="Background" type="Sprite2D" parent="CanvasGroup"]
+z_index = -20
+z_as_relative = false
+position = Vector2(360, 144)
+texture = ExtResource("9_jw3lc")
 
-[node name="Sprite2D" type="Sprite2D" parent="Walls/Wall1"]
-texture = ExtResource("6_kv2o3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall1"]
-shape = SubResource("RectangleShape2D_iq8ki")
-
-[node name="Wall2" type="StaticBody2D" parent="Walls"]
-position = Vector2(576, 7.15256e-07)
-rotation = 1.5708
-scale = Vector2(0.02, 0.8)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Walls/Wall2"]
-texture = ExtResource("6_kv2o3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
-shape = SubResource("RectangleShape2D_iq8ki")
-
-[node name="Wall5" type="StaticBody2D" parent="Walls"]
-position = Vector2(576, 408)
-rotation = 1.5708
-scale = Vector2(0.02, 0.8)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Walls/Wall5"]
-texture = ExtResource("6_kv2o3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall5"]
-shape = SubResource("RectangleShape2D_iq8ki")
-
-[node name="Wall4" type="StaticBody2D" parent="Walls"]
-position = Vector2(768, 200)
-scale = Vector2(0.02, 0.8)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Walls/Wall4"]
-texture = ExtResource("6_kv2o3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall4"]
-shape = SubResource("RectangleShape2D_iq8ki")
-
-[node name="Wall6" type="StaticBody2D" parent="Walls"]
-position = Vector2(480, 96)
-rotation = 1.5708
-scale = Vector2(0.08, 0.08)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Walls/Wall6"]
-texture = ExtResource("6_kv2o3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall6"]
-shape = SubResource("RectangleShape2D_iq8ki")
-
-[node name="Wall7" type="StaticBody2D" parent="Walls"]
-position = Vector2(688, 168)
-rotation = 1.5708
-scale = Vector2(0.08, 0.08)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Walls/Wall7"]
-texture = ExtResource("6_kv2o3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall7"]
-shape = SubResource("RectangleShape2D_iq8ki")
-
-[node name="Wall8" type="StaticBody2D" parent="Walls"]
-position = Vector2(448, 344)
-rotation = 1.5708
-scale = Vector2(0.08, 0.08)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Walls/Wall8"]
-texture = ExtResource("6_kv2o3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall8"]
-shape = SubResource("RectangleShape2D_iq8ki")
+[node name="CanvasModulate" type="CanvasModulate" parent="CanvasGroup"]
+color = Color(0, 0, 0, 1)
