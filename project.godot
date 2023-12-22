@@ -58,5 +58,4 @@ right={
 
 [physics]
 
-2d/default_gravity=980.0
 2d/default_gravity_vector=Vector2(2.08165e-12, 1)

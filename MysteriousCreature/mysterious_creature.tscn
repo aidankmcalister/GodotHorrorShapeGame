@@ -1,13 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://smo44wvq2qwt"]
+[gd_scene load_steps=6 format=3 uid="uid://smo44wvq2qwt"]
 
 [ext_resource type="Script" path="res://MysteriousCreature/creature.gd" id="1_ieipf"]
-[ext_resource type="Texture2D" uid="uid://ct6c68cvahfne" path="res://Shapes/Square2.png" id="1_r3nmx"]
+[ext_resource type="Shader" path="res://dither.gdshader" id="2_17xst"]
+[ext_resource type="Texture2D" uid="uid://botdj7xdibstb" path="res://Shapes/Square.png" id="2_rkr82"]
 
-[node name="MysteriousCreature" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xbqky"]
+shader = ExtResource("2_17xst")
+shader_parameter/u_bit_depth = null
+shader_parameter/u_contrast = null
+shader_parameter/u_offset = null
+shader_parameter/u_dither_size = null
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yage"]
+size = Vector2(506.667, 506.667)
+
+[node name="MysteriousCreature" type="StaticBody2D"]
 position = Vector2(2.08165e-12, 320)
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_ieipf")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_r3nmx")
+material = SubResource("ShaderMaterial_xbqky")
+texture = ExtResource("2_rkr82")
+
+[node name="SquareCollision" type="CollisionShape2D" parent="."]
+position = Vector2(2.38418e-06, 0)
+shape = SubResource("RectangleShape2D_2yage")
+
+[node name="TriangleCollision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-6.93883e-12, -223.333, 256.667, 223.333, -260, 223.333)
+
+[node name="HexagonCollision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-6.93883e-12, -256.667, 223.333, -130, 223.333, 130, -6.93883e-12, 260, -223.333, 130, -223.333, -130)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="SquareAreaCollision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2.38418e-06, 0)
+scale = Vector2(1.02, 1.02)
+shape = SubResource("RectangleShape2D_2yage")
+
+[node name="TriangleAreaCollision" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(1.02, 1.02)
+polygon = PackedVector2Array(-6.93883e-12, -223.333, 256.667, 223.333, -260, 223.333)
+
+[node name="HexagonAreaCollision" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(1.02, 1.02)
+polygon = PackedVector2Array(-6.93883e-12, -256.667, 223.333, -130, 223.333, 130, -6.93883e-12, 260, -223.333, 130, -223.333, -130)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

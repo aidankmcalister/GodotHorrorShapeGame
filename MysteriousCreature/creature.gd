@@ -1,14 +1,40 @@
 extends Node2D
 
-var hexagon_texture = preload("res://Shapes/Hexagon 2.png")
-var square_texture = preload("res://Shapes/Square2.png")
-var triangle_texture = preload("res://Shapes/Triangle 2.png")
+var hexagon_texture = preload("res://Shapes/Hexagon.png")
+var square_texture = preload("res://Shapes/Square.png")
+var triangle_texture = preload("res://Shapes/Triangle.png")
 
-func _ready():
-	change_texture(hexagon_texture)
+func change_shape(shape_to_change):
+	$Sprite2D.texture = shape_to_change
+	if shape_to_change == hexagon_texture:
+		$HexagonCollision.set_deferred("disabled", false)
+		$TriangleCollision.set_deferred("disabled", true)
+		$SquareCollision.set_deferred("disabled", true)
+		$Area2D/HexagonAreaCollision.set_deferred("disabled", false)
+		$Area2D/TriangleAreaCollision.set_deferred("disabled", true)
+		$Area2D/SquareAreaCollision.set_deferred("disabled", true)
+	if shape_to_change == square_texture:
+		$HexagonCollision.set_deferred("disabled", true)
+		$TriangleCollision.set_deferred("disabled", true)
+		$SquareCollision.set_deferred("disabled", false)
+		$Area2D/HexagonAreaCollision.set_deferred("disabled", true)
+		$Area2D/TriangleAreaCollision.set_deferred("disabled", true)
+		$Area2D/SquareAreaCollision.set_deferred("disabled", false)
+	if shape_to_change == triangle_texture:
+		$HexagonCollision.set_deferred("disabled", true)
+		$TriangleCollision.set_deferred("disabled", false)
+		$SquareCollision.set_deferred("disabled", true)
+		$Area2D/HexagonAreaCollision.set_deferred("disabled", true)
+		$Area2D/TriangleAreaCollision.set_deferred("disabled", false)
+		$Area2D/SquareAreaCollision.set_deferred("disabled", true)
 
-func _process(_delta):
-	pass
-
-func change_texture(texture_to_change):
-	$Sprite2D.texture = texture_to_change
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("shapes"):
+		match body.shape:
+			"square":
+				change_shape(square_texture)
+			"triangle":
+				change_shape(triangle_texture)
+			"hexagon":
+				change_shape(hexagon_texture)
+		body.handle_consumed()

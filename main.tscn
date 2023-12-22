@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc7j7om1mmerv"]
+[gd_scene load_steps=7 format=3 uid="uid://bc7j7om1mmerv"]
 
 [ext_resource type="PackedScene" uid="uid://2iygctujwii4" path="res://Player/player.tscn" id="1_1o66t"]
 [ext_resource type="Texture2D" uid="uid://ct6c68cvahfne" path="res://Shapes/Square2.png" id="2_lobnt"]
 [ext_resource type="PackedScene" uid="uid://smo44wvq2qwt" path="res://MysteriousCreature/mysterious_creature.tscn" id="3_f07h8"]
-[ext_resource type="PackedScene" uid="uid://cdn1jyvl6wtxn" path="res://Item/item.tscn" id="4_5avma"]
+[ext_resource type="PackedScene" uid="uid://cdn1jyvl6wtxn" path="res://ShapeItems/square_item.tscn" id="4_5avma"]
+[ext_resource type="PackedScene" uid="uid://c1dgby8vq1fy6" path="res://ShapeItems/triangle_item.tscn" id="5_caer7"]
+[ext_resource type="PackedScene" uid="uid://dwd275gp0rypg" path="res://ShapeItems/hexagon_item.tscn" id="6_excdg"]
 
 [node name="Main" type="Node2D"]
 
@@ -19,5 +21,11 @@ texture = ExtResource("2_lobnt")
 [node name="MysteriousCreature" parent="." instance=ExtResource("3_f07h8")]
 position = Vector2(576, 296)
 
-[node name="Item" parent="." instance=ExtResource("4_5avma")]
-position = Vector2(576, 104)
+[node name="SquareItem" parent="." instance=ExtResource("4_5avma")]
+position = Vector2(576, 112)
+
+[node name="TriangleItem" parent="." instance=ExtResource("5_caer7")]
+position = Vector2(424, 272)
+
+[node name="HexagonItem" parent="." instance=ExtResource("6_excdg")]
+position = Vector2(720, 272)

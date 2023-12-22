@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwd275gp0rypg"]
+
+[ext_resource type="Script" path="res://ShapeItems/hexagon_item.gd" id="1_k3amf"]
+[ext_resource type="Texture2D" uid="uid://bbxhslo4ipydf" path="res://Shapes/Hexagon 2.png" id="2_8hrmx"]
+
+[node name="HexagonItem" type="RigidBody2D" groups=["shapes"]]
+gravity_scale = 1.66533e-16
+script = ExtResource("1_k3amf")
+
+[node name="Hexagon" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_8hrmx")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -13, -11, -7, -11, 7, 0, 13, 11, 7, 11, -7)
