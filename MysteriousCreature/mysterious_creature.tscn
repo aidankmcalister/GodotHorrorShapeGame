@@ -1,15 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://smo44wvq2qwt"]
+[gd_scene load_steps=4 format=3 uid="uid://smo44wvq2qwt"]
 
 [ext_resource type="Script" path="res://MysteriousCreature/creature.gd" id="1_ieipf"]
-[ext_resource type="Shader" path="res://dither.gdshader" id="2_17xst"]
 [ext_resource type="Texture2D" uid="uid://botdj7xdibstb" path="res://Shapes/Square.png" id="2_rkr82"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xbqky"]
-shader = ExtResource("2_17xst")
-shader_parameter/u_bit_depth = null
-shader_parameter/u_contrast = null
-shader_parameter/u_offset = null
-shader_parameter/u_dither_size = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yage"]
 size = Vector2(506.667, 506.667)
@@ -21,7 +13,6 @@ script = ExtResource("1_ieipf")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_xbqky")
 texture = ExtResource("2_rkr82")
 
 [node name="SquareCollision" type="CollisionShape2D" parent="."]
