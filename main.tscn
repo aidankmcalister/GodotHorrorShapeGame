@@ -14,31 +14,35 @@
 script = ExtResource("1_3e7py")
 
 [node name="MainUI" parent="." instance=ExtResource("8_jutq7")]
+z_as_relative = false
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 
 [node name="Player" parent="CanvasGroup" instance=ExtResource("1_1o66t")]
 position = Vector2(576, 192)
 
-[node name="MysteriousCreature" parent="CanvasGroup" instance=ExtResource("3_f07h8")]
-position = Vector2(576, 528)
+[node name="Level1" type="Node2D" parent="CanvasGroup"]
 
-[node name="SquareItem" parent="CanvasGroup" instance=ExtResource("4_5avma")]
+[node name="SquareItem" parent="CanvasGroup/Level1" instance=ExtResource("4_5avma")]
 position = Vector2(576, 112)
 
-[node name="TriangleItem" parent="CanvasGroup" instance=ExtResource("5_caer7")]
+[node name="TriangleItem" parent="CanvasGroup/Level1" instance=ExtResource("5_caer7")]
 position = Vector2(424, 272)
 
-[node name="HexagonItem" parent="CanvasGroup" instance=ExtResource("6_excdg")]
+[node name="HexagonItem" parent="CanvasGroup/Level1" instance=ExtResource("6_excdg")]
 position = Vector2(720, 272)
 
-[node name="StartingArea" parent="CanvasGroup" instance=ExtResource("7_xan31")]
+[node name="Map" parent="CanvasGroup/Level1" instance=ExtResource("7_xan31")]
 
 [node name="Background" type="Sprite2D" parent="CanvasGroup"]
 z_index = -20
 z_as_relative = false
 position = Vector2(360, 144)
 texture = ExtResource("9_jw3lc")
+
+[node name="MysteriousCreature" parent="CanvasGroup" instance=ExtResource("3_f07h8")]
+visible = false
+position = Vector2(576, 528)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="CanvasGroup"]
 color = Color(0, 0, 0, 1)

@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
-@export var speed = 400
+@export var speed = 160
 @export var friction = 7
 @export var acceleration = 5
 var targetRotation = 0.0
-var rotationSpeed = 5.0
-var push_force = 5
+var rotationSpeed= 40.0
+var push_force = 5.0
 var look = true
+var is_grabbing = false
+var direction = 0
 
 #Items / Abilities
 
@@ -39,9 +41,16 @@ func get_input(_delta):
 	return input
 
 func player_movement(delta):
-	var direction = get_input(delta)
+	direction = get_input(delta)
 	if direction.length() > 0:
-		velocity = velocity.lerp(direction.normalized() * speed, acceleration * delta)
+		if is_grabbing:
+			velocity = velocity.lerp(direction.normalized() * (speed * 0.6), acceleration * delta)
+		else:
+			velocity = velocity.lerp(direction.normalized() * speed, acceleration * delta)
 	else:
 		velocity = velocity.lerp(Vector2.ZERO, friction * delta)
-	move_and_slide()
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		#print("I collided with ", collision.get_collider())
+		if collision.get_collider().is_in_group("shapes"):
+			collision.get_collider().apply_central_impulse(-collision.get_normal() * push_force)

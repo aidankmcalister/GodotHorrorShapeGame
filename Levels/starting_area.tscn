@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2nmsrl2ikrwr"]
+[gd_scene load_steps=9 format=3 uid="uid://d2nmsrl2ikrwr"]
 
 [ext_resource type="Texture2D" uid="uid://botdj7xdibstb" path="res://Shapes/Square.png" id="1_j6bxy"]
 [ext_resource type="Script" path="res://Levels/starting_area.gd" id="1_qw2cv"]
@@ -18,10 +18,14 @@ gradient = SubResource("Gradient_mence")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1f35c"]
-radius = 32.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njobn"]
+size = Vector2(20, 2.5)
 
-[node name="StartingArea" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yjvy4"]
+radius = 24.0
+height = 112.0
+
+[node name="Map" type="Node2D"]
 script = ExtResource("1_qw2cv")
 
 [node name="Walls" type="Node2D" parent="."]
@@ -96,7 +100,13 @@ texture_scale = 2.0
 [node name="Area2D" type="Area2D" parent="DepositZone"]
 position = Vector2(576, 376)
 
+[node name="DistanceChecker" type="CollisionShape2D" parent="DepositZone/Area2D"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_njobn")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DepositZone/Area2D"]
-shape = SubResource("CircleShape2D_1f35c")
+position = Vector2(0, 11)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yjvy4")
 
 [connection signal="body_entered" from="DepositZone/Area2D" to="." method="_on_area_2d_body_entered"]
