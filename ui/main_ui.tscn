@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://brqd6ljovnpa3"]
+[gd_scene load_steps=8 format=3 uid="uid://brqd6ljovnpa3"]
 
 [ext_resource type="Shader" path="res://Player/vhs.gdshader" id="1_td331"]
+[ext_resource type="Script" path="res://ui/main_ui.gd" id="1_vr8xj"]
 [ext_resource type="Shader" path="res://main.gdshader" id="2_23rrp"]
+[ext_resource type="Script" path="res://ui/dialogue_label.gd" id="2_ah4qg"]
+[ext_resource type="AudioStream" uid="uid://cq3be6nshwssw" path="res://Sounds/typewritersound.wav" id="3_owvem"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vog7h"]
 shader = ExtResource("1_td331")
@@ -40,6 +43,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_vr8xj")
 
 [node name="DialogueBox" type="Control" parent="."]
 anchors_preset = 0
@@ -53,7 +57,7 @@ offset = Vector2(2.08165e-12, 20)
 transform = Transform2D(1, 0, 0, 1, 2.08165e-12, 20)
 follow_viewport_scale = 2.45
 
-[node name="Panel" type="Panel" parent="DialogueBox/CanvasLayer"]
+[node name="Panel" type="PanelContainer" parent="DialogueBox/CanvasLayer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -62,21 +66,24 @@ offset_top = 2.0
 offset_right = 148.0
 offset_bottom = 42.0
 grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="DialogueBox/CanvasLayer/Panel"]
-clip_contents = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 9.0
-offset_top = 2.0
-offset_right = 9.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 12
-text = "Thank you, little one. Your naivety amuses me as you dance in the soft glow of ignorance."
+[node name="Label" type="Label" parent="DialogueBox/CanvasLayer/Panel"]
+layout_mode = 2
+text = "Thank you, little one."
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("2_ah4qg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DialogueBox/CanvasLayer/Panel"]
+stream = ExtResource("3_owvem")
+
+[node name="Timer" type="Timer" parent="DialogueBox/CanvasLayer/Panel"]
+wait_time = 1.5
+one_shot = true
 
 [node name="Shaders" type="Control" parent="."]
 anchors_preset = 0
@@ -113,3 +120,5 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[connection signal="timeout" from="DialogueBox/CanvasLayer/Panel/Timer" to="DialogueBox/CanvasLayer/Panel/Label" method="_on_timer_timeout"]

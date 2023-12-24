@@ -7,7 +7,7 @@ var triangle_texture = preload("res://Shapes/Triangle.png")
 @export var light_level = 1
 
 func _ready():
-	print('Game Starting with light level 1')
+	pass
 
 func increase_light_level():
 	light_level += 1
