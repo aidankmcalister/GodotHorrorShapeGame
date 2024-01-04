@@ -34,9 +34,9 @@ func _on_area_2d_body_entered(body):
 		shape_count += 1
 		match shape_count:
 			1: text = "Thank you, little one."
-			2: text = "Embrace the darkness that unfolds." #Change
-			3: text = "More, little puppet. Feed me."
-			4: text = "MORE. MORE."
-			5: text = "ASHDFSDVQEVR."
+			2: text = "Yøur efforts are appre¢iated"
+			3: text = "More, l!†tle þµppet. F€€ð me."
+			4: text = "MØR€. MØRE. MØR€."
+			5: text = "F€€Ð ME MØRE ¥Øµ iN$¡GN¡FiG@NT P@WN."
 		main_ui.update_dialogue(text)
 		

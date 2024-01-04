@@ -57,7 +57,7 @@ offset = Vector2(2.08165e-12, 20)
 transform = Transform2D(1, 0, 0, 1, 2.08165e-12, 20)
 follow_viewport_scale = 2.45
 
-[node name="Panel" type="PanelContainer" parent="DialogueBox/CanvasLayer"]
+[node name="Panel" type="Panel" parent="DialogueBox/CanvasLayer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -71,6 +71,9 @@ size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="DialogueBox/CanvasLayer/Panel"]
 layout_mode = 2
+offset_top = 8.0
+offset_right = 300.0
+offset_bottom = 31.0
 text = "Thank you, little one."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -89,6 +92,7 @@ one_shot = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_group_ = true
 
 [node name="GlitchShaderCanvas" type="CanvasLayer" parent="Shaders"]
 offset = Vector2(-100, 2.08165e-12)
