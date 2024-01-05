@@ -5,8 +5,9 @@ extends CharacterBody2D
 @export var acceleration = 5
 
 var dash_direction = Vector2()
-var dash_speed = 250.0
+var dash_speed = 450
 var can_dash = true
+var is_dashing = false
 
 var targetRotation = 0.0
 var rotationSpeed= 40.0
@@ -58,7 +59,6 @@ func player_movement(delta):
 		velocity = velocity.lerp(Vector2.ZERO, friction * delta)
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		#print("I collided with ", collision.get_collider())
 		if collision.get_collider().is_in_group("shapes"):
 			collision.get_collider().apply_central_impulse(-collision.get_normal() * push_force)
 
@@ -67,16 +67,33 @@ func player_movement(delta):
 func dash_movement(delta):
 	if Input.is_action_pressed('dash') and can_dash:
 		can_dash = false
+		is_dashing = true
 		dash_direction = direction.normalized()
+		dash_visual()
 		velocity = dash_direction * dash_speed
-		velocity *= 1.0 - (friction * delta)
 		$Dash_Cooldown.start()
-	#if Input.is_action_pressed('cloak') and cloak_wait_timer.is_stopped():
-		#visibility_lvl = 0
-		#cloak_wait_timer.start()
-		#cloak_duration_timer.start()
-		#var tween = create_tween()
-		#tween.tween_property($Sprite2D, "modulate", Color(0, 0, 0, 0.5), 0.5)
 
 func _on_dash_cooldown_timeout():
 	can_dash = true
+
+func dash_visual():
+	
+	var tween = create_tween()
+	tween.tween_property($Sprite2D, "scale", Vector2(.04, .04), .1) \
+	.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property($Sprite2D, "modulate", Color(0, 0, 0, 0.5), 0.5) \
+	.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tween.connect("finished", on_tween_finished)
+
+func on_tween_finished():
+	var tween = create_tween()
+	$Dash_Duration.start()
+
+func _on_dash_duration_timeout():
+	var tween = create_tween()
+	tween.tween_property($Sprite2D, "scale", Vector2(.05, .05), .3) \
+	.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property($Sprite2D, "modulate", Color(255, 255, 255, .5), 0.5) \
+	.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	is_dashing = false
+

@@ -10,7 +10,7 @@ var tween = null
 func _ready():
 	typewriter_effect()
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func typewriter_effect():

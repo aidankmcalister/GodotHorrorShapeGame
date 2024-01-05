@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc7j7om1mmerv"]
+[gd_scene load_steps=10 format=3 uid="uid://bc7j7om1mmerv"]
 
 [ext_resource type="PackedScene" uid="uid://2iygctujwii4" path="res://Player/player.tscn" id="1_1o66t"]
 [ext_resource type="Script" path="res://main.gd" id="1_3e7py"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dwd275gp0rypg" path="res://ShapeItems/hexagon_item.tscn" id="6_excdg"]
 [ext_resource type="PackedScene" uid="uid://d2nmsrl2ikrwr" path="res://Levels/starting_area.tscn" id="7_xan31"]
 [ext_resource type="PackedScene" uid="uid://brqd6ljovnpa3" path="res://ui/main_ui.tscn" id="8_jutq7"]
+[ext_resource type="PackedScene" uid="uid://dqyqxouojomd6" path="res://dash_through_wall.tscn" id="8_tgl6h"]
 [ext_resource type="Texture2D" uid="uid://d3yqdnyob7ww6" path="res://gray square.png" id="9_jw3lc"]
 
 [node name="Main" type="Node2D"]
@@ -39,6 +40,10 @@ position = Vector2(720, 272)
 
 [node name="Map" parent="CanvasGroup/Level1" instance=ExtResource("7_xan31")]
 
+[node name="DashThroughWall" parent="CanvasGroup/Level1" instance=ExtResource("8_tgl6h")]
+position = Vector2(536, 168)
+rotation = 1.5708
+
 [node name="Background" type="Sprite2D" parent="CanvasGroup"]
 z_index = -20
 z_as_relative = false
@@ -46,4 +51,5 @@ position = Vector2(360, 144)
 texture = ExtResource("9_jw3lc")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="CanvasGroup"]
+visible = false
 color = Color(0, 0, 0, 1)
