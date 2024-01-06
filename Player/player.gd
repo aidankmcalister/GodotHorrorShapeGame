@@ -15,13 +15,22 @@ var push_force = 5.0
 var look = true
 var is_grabbing = false
 var direction = 0
-var visibility_lvl = 1
-var light_lvl = 1
+ 
+## Items / Abilities 
 
-#Items / Abilities
+# Dash
 
 var has_dash = true
+
+# Flashlight
+
 var has_flashlight = true
+var flashlight_level : float = 100.0
+var flashlight_decrease_rate : float = 1.0
+var flashlight_decrease_interval : float = .1
+var flashlight_time_passed : float = 0.0
+
+
 
 func _physics_process(delta):
 	player_movement(delta)
@@ -31,7 +40,9 @@ func _physics_process(delta):
 		
 	if has_flashlight:
 		$FlashlightBox.show()
-		flashlight_lvl()
+		$FlashlightBox/Flashlight.energy = flashlight_level / 100
+		$PointLight2D.energy = flashlight_level / 100
+		change_flashlight_lvl(delta)
 		if look:
 			$FlashlightBox.look_at(get_global_mouse_position())
 	else:
@@ -63,7 +74,7 @@ func player_movement(delta):
 		
 	move_and_slide()
 	
-	# TODO: FIX PUSHING
+	## TODO: FIX PUSHING
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -106,5 +117,13 @@ func _on_dash_duration_timeout():
 
 # Flashlight
 
-func flashlight_lvl():
-	print(light_lvl)
+func change_flashlight_lvl(delta):
+	flashlight_time_passed += delta
+
+	if flashlight_time_passed >= flashlight_decrease_interval:
+		flashlight_level -= flashlight_decrease_rate
+		flashlight_level = clamp(flashlight_level, 0, 100)
+		flashlight_time_passed = 0.0
+		
+		if $FlashlightBox/Flashlight.energy <= 0:
+			print("game over")

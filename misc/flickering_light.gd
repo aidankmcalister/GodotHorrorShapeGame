@@ -9,4 +9,4 @@ func _process(delta):
 	var to_player = player.global_transform.origin - global_transform.origin
 	ray.target_position = to_player.normalized() * ray_length
 	if ray.is_colliding() && ray.get_collider() == player:
-		print("yes")
+		player.flashlight_level = 100
