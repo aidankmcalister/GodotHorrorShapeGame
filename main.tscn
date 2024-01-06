@@ -1,13 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bc7j7om1mmerv"]
+[gd_scene load_steps=6 format=3 uid="uid://bc7j7om1mmerv"]
 
 [ext_resource type="PackedScene" uid="uid://2iygctujwii4" path="res://Player/player.tscn" id="1_1o66t"]
 [ext_resource type="Script" path="res://main.gd" id="1_3e7py"]
-[ext_resource type="PackedScene" uid="uid://cdn1jyvl6wtxn" path="res://ShapeItems/square_item.tscn" id="4_5avma"]
-[ext_resource type="PackedScene" uid="uid://c1dgby8vq1fy6" path="res://ShapeItems/triangle_item.tscn" id="5_caer7"]
-[ext_resource type="PackedScene" uid="uid://dwd275gp0rypg" path="res://ShapeItems/hexagon_item.tscn" id="6_excdg"]
-[ext_resource type="PackedScene" uid="uid://d2nmsrl2ikrwr" path="res://Levels/starting_area.tscn" id="7_xan31"]
+[ext_resource type="PackedScene" uid="uid://b461v3bwhtvbg" path="res://Levels/starting_map_official.tscn" id="7_lwo5p"]
 [ext_resource type="PackedScene" uid="uid://brqd6ljovnpa3" path="res://ui/main_ui.tscn" id="8_jutq7"]
-[ext_resource type="PackedScene" uid="uid://dqyqxouojomd6" path="res://dash_through_wall.tscn" id="8_tgl6h"]
 [ext_resource type="Texture2D" uid="uid://d3yqdnyob7ww6" path="res://gray square.png" id="9_jw3lc"]
 
 [node name="Main" type="Node2D"]
@@ -23,26 +19,8 @@ position = Vector2(576, 192)
 
 [node name="Level1" type="Node2D" parent="CanvasGroup"]
 
-[node name="SquareItem" parent="CanvasGroup/Level1" instance=ExtResource("4_5avma")]
-position = Vector2(576, 112)
-
-[node name="SquareItem2" parent="CanvasGroup/Level1" instance=ExtResource("4_5avma")]
-position = Vector2(672, 184)
-
-[node name="TriangleItem" parent="CanvasGroup/Level1" instance=ExtResource("5_caer7")]
-position = Vector2(424, 272)
-
-[node name="TriangleItem2" parent="CanvasGroup/Level1" instance=ExtResource("5_caer7")]
-position = Vector2(480, 184)
-
-[node name="HexagonItem" parent="CanvasGroup/Level1" instance=ExtResource("6_excdg")]
-position = Vector2(720, 272)
-
-[node name="Map" parent="CanvasGroup/Level1" instance=ExtResource("7_xan31")]
-
-[node name="DashThroughWall" parent="CanvasGroup/Level1" instance=ExtResource("8_tgl6h")]
-position = Vector2(536, 168)
-rotation = 1.5708
+[node name="StartingMapOfficial" parent="CanvasGroup/Level1" instance=ExtResource("7_lwo5p")]
+position = Vector2(448, 72)
 
 [node name="Background" type="Sprite2D" parent="CanvasGroup"]
 z_index = -20
@@ -51,5 +29,4 @@ position = Vector2(360, 144)
 texture = ExtResource("9_jw3lc")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="CanvasGroup"]
-visible = false
 color = Color(0, 0, 0, 1)

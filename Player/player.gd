@@ -16,6 +16,8 @@ var look = true
 var is_grabbing = false
 var direction = 0
 var visibility_lvl = 1
+var sanity_lvl = 1
+
 #Items / Abilities
 
 var has_dash = true
@@ -57,8 +59,13 @@ func player_movement(delta):
 			velocity = velocity.lerp(direction.normalized() * speed, acceleration * delta)
 	else:
 		velocity = velocity.lerp(Vector2.ZERO, friction * delta)
-	var collision = move_and_collide(velocity * delta)
-	if collision:
+		
+	move_and_slide()
+	
+	# TODO: FIX PUSHING
+	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
 		if collision.get_collider().is_in_group("shapes"):
 			collision.get_collider().apply_central_impulse(-collision.get_normal() * push_force)
 

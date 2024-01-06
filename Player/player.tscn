@@ -46,7 +46,7 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_l5v4i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -60,7 +60,7 @@ shape = SubResource("CircleShape2D_mund5")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -2.27374e-13)
 scale = Vector2(4.5, 4.5)
-energy = 0.7
+energy = 0.8
 shadow_enabled = true
 shadow_filter = 1
 texture = ExtResource("3_5f6tq")
@@ -125,7 +125,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Dash_Duration" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.05
 one_shot = true
 
 [connection signal="body_entered" from="AreaCollision" to="." method="_on_area_collision_body_entered"]
