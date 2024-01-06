@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://pn6v7mvdl6ew" path="res://player_light.tres" id="3_5f6tq"]
 [ext_resource type="Shader" path="res://main.gdshader" id="3_vpo73"]
 [ext_resource type="Script" path="res://Player/PlayerMainLight.gd" id="4_3nal8"]
-[ext_resource type="Texture2D" uid="uid://cun7lsv2kfmin" path="res://light_cone.jpeg" id="4_piivh"]
+[ext_resource type="Texture2D" uid="uid://dg44b56v1iktr" path="res://13592-v8.jpg" id="5_s683e"]
 [ext_resource type="Shader" path="res://Player/vhs.gdshader" id="6_eds2h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mund5"]
@@ -65,21 +65,22 @@ shadow_enabled = true
 shadow_filter = 1
 texture = ExtResource("3_5f6tq")
 offset = Vector2(2.08165e-12, 2.08165e-12)
-texture_scale = 1.6
+texture_scale = 0.6
 script = ExtResource("4_3nal8")
 
 [node name="FlashlightBox" type="Node2D" parent="."]
 
 [node name="Flashlight" type="PointLight2D" parent="FlashlightBox"]
-position = Vector2(9, 70)
+show_behind_parent = true
+position = Vector2(7.62939e-06, -4.54747e-12)
 rotation = -1.5708
-scale = Vector2(4.5, 8.77989)
-energy = 1.5
+scale = Vector2(9.935, 8.78)
+energy = 0.8
 shadow_enabled = true
 shadow_filter = 1
-texture = ExtResource("4_piivh")
-offset = Vector2(2.08165e-12, 2.08165e-12)
-texture_scale = 0.09
+texture = ExtResource("5_s683e")
+offset = Vector2(0, 9)
+texture_scale = 0.04
 
 [node name="AreaCollision" type="Area2D" parent="."]
 

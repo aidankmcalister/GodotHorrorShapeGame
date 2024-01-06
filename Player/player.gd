@@ -16,12 +16,12 @@ var look = true
 var is_grabbing = false
 var direction = 0
 var visibility_lvl = 1
-var sanity_lvl = 1
+var light_lvl = 1
 
 #Items / Abilities
 
 var has_dash = true
-var has_flashlight = false
+var has_flashlight = true
 
 func _physics_process(delta):
 	player_movement(delta)
@@ -31,6 +31,7 @@ func _physics_process(delta):
 		
 	if has_flashlight:
 		$FlashlightBox.show()
+		flashlight_lvl()
 		if look:
 			$FlashlightBox.look_at(get_global_mouse_position())
 	else:
@@ -71,7 +72,7 @@ func player_movement(delta):
 
 # Dash
 
-func dash_movement(delta):
+func dash_movement(_delta):
 	if Input.is_action_pressed('dash') and can_dash:
 		can_dash = false
 		is_dashing = true
@@ -93,7 +94,6 @@ func dash_visual():
 	tween.connect("finished", on_tween_finished)
 
 func on_tween_finished():
-	var tween = create_tween()
 	$Dash_Duration.start()
 
 func _on_dash_duration_timeout():
@@ -104,3 +104,7 @@ func _on_dash_duration_timeout():
 	.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 	is_dashing = false
 
+# Flashlight
+
+func flashlight_lvl():
+	print(light_lvl)

@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2ir457pc3e2j"]
 
+[ext_resource type="Script" path="res://misc/flickering_light.gd" id="1_kst8i"]
 [ext_resource type="Texture2D" uid="uid://3u2rakmco3v1" path="res://flickering_light.tres" id="1_rh53e"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rokgg"]
-radius = 96.0
-
 [node name="flickering_light" type="Node2D"]
+script = ExtResource("1_kst8i")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.6, 0.0352941, 0.0352941, 1)
@@ -14,7 +13,5 @@ shadow_enabled = true
 texture = ExtResource("1_rh53e")
 texture_scale = 7.0
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_rokgg")
+[node name="Ray" type="RayCast2D" parent="."]
+target_position = Vector2(96, 8)
