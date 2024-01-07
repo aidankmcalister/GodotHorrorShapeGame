@@ -3,12 +3,7 @@ extends Node2D
 @onready var player = get_node("/root/Main/CanvasGroup/Player")
 @onready var vhs_shader = get_node("/root/Main/MainUI/Shaders/GlitchShaderCanvas/GlitchShader").material
 @onready var main_ui = get_node("/root/Main/MainUI")
-@onready var LIGHTS = [
-	$LIGHTS/flickering_light,
-	$LIGHTS/flickering_light2,
-	$LIGHTS/flickering_light3,
-	$LIGHTS/flickering_light4,
-]
+
 var vhs_range_max = 0.05 * 2.5
 var vhs_ni_max = 0.009 * 2.5
 var vhs_oi_max = 0.03 * 2.5
@@ -41,6 +36,6 @@ func _on_area_2d_body_entered(body):
 			2: text = "Yøur efforts are appre¢iated"
 			3: text = "More, l!†tle þµppet. F€€ð me."
 			4: text = "MØR€. MØRE. MØR€."
-			5: text = "F€€Ð ME MØRE ¥Øµ iN$¡GN¡FiG@NT P@WN."
+			5: text = "F€€Ð ME ¥Øµ iN$¡GN¡FiG@NT P@WN."
 		main_ui.update_dialogue(text)
 		

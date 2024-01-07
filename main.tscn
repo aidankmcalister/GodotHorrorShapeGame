@@ -15,7 +15,7 @@ z_as_relative = false
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 
 [node name="Player" parent="CanvasGroup" instance=ExtResource("1_1o66t")]
-position = Vector2(576, 192)
+position = Vector2(570, 192)
 
 [node name="Map" parent="CanvasGroup" instance=ExtResource("7_lwo5p")]
 position = Vector2(448, 72)
@@ -27,4 +27,5 @@ position = Vector2(360, 144)
 texture = ExtResource("9_jw3lc")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="CanvasGroup"]
+visible = false
 color = Color(0, 0, 0, 1)

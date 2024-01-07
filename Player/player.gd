@@ -138,44 +138,33 @@ func change_flashlight_lvl(delta):
 			print("game over")
 
 func light_raycast():
-	closest_target(global.LIGHTS)
-	
-	#light_ray.target_position = closest_in(LIGHTS)
-	#if light_ray.is_colliding() and ray.get_collider().is_in_group("light"):
+	## light_ray.target_position = closest global.LIGHTS
+	#light_ray.target_position = get_closest_from_array(global.LIGHTS)
+	pass
+
+func get_closest_from_array(array: Array):
+	#vector2.distance_to(array of vectors[index]) will work
+	#yup what @expu mentioned, just loop through the list if the distance_to is less than your current shortest stash the index and the new shortest distance
+	#first time through just auto stash the first values because you know it starts as the shortest and everything else has to try and beat it
+	#can just use a for loop to iterate
+	#Use Array.sort() and sort based on the distance 
+	#Pick the first element of the array to get the closest
+
+#func light_raycast():
+	#pass
+	#if light_ray.is_colliding() and light_ray.get_collider().is_in_group("light"):
 		#print("colliding with light")
-	#var to_player = player.global_transform.origin - global_transform.origin
-	#ray.target_position = to_player.normalized() * ray_length
-	#if to_player < Vector2(110, 110):
-		#print(ray.get_collider())
-		#if ray.is_colliding() and ray.get_collider() == player:
-			#player.is_in_light = true
-		#else:
-			#player.is_in_light = false
+		#is_in_light = true
+	#else:
+		#is_in_light = false
 
-func closest_target(targets):  
-	var closest = null
-	var shortest_distance = 1000000000.0
-	for target in targets:
-		var distance = abs(target.position - position)
-		print(distance)
-		if  distance < shortest_distance:  
-			shortest_distance = distance  
-			closest= target  
-	print("closest target is: ", closest)
-
-func findClosestLight():
-	var closest_light = null
-	var closest_distance = 1000
-
-	for light in global.LIGHTS:
-		var distance = global_position.distance_to(light.position)
-		
-		if distance < closest_distance:
-			closest_distance = distance
-			closest_light = light
-
-	if closest_light != null:
-		print("Closest light name:", closest_light.name)
-	else:
-		print("No lights in the array.")
-
+#func closest_target(targets: Array):  
+	#var closest
+	#var shortest_distance = 10000.0
+	#for target in targets:
+		#var distance = target.global_position.distance_to(global_position)
+		#if  distance < shortest_distance:  
+			#shortest_distance = distance  
+			#closest= target  
+	#print("closest target is: ", closest)
+	#return closest.global_position
