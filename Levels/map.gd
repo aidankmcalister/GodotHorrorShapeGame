@@ -1,9 +1,14 @@
 extends Node2D
 
-@onready var player = get_parent().get_parent().get_node("Player")
-@onready var vhs_shader = get_parent().get_parent().get_parent().get_node("MainUI/Shaders/GlitchShaderCanvas/GlitchShader").material
+@onready var player = get_node("/root/Main/CanvasGroup/Player")
+@onready var vhs_shader = get_node("/root/Main/MainUI/Shaders/GlitchShaderCanvas/GlitchShader").material
 @onready var main_ui = get_node("/root/Main/MainUI")
-
+@onready var LIGHTS = [
+	$LIGHTS/flickering_light,
+	$LIGHTS/flickering_light2,
+	$LIGHTS/flickering_light3,
+	$LIGHTS/flickering_light4,
+]
 var vhs_range_max = 0.05 * 2.5
 var vhs_ni_max = 0.009 * 2.5
 var vhs_oi_max = 0.03 * 2.5

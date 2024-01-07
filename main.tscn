@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://2iygctujwii4" path="res://Player/player.tscn" id="1_1o66t"]
 [ext_resource type="Script" path="res://main.gd" id="1_3e7py"]
-[ext_resource type="PackedScene" uid="uid://b461v3bwhtvbg" path="res://Levels/starting_map_official.tscn" id="7_lwo5p"]
+[ext_resource type="PackedScene" uid="uid://b461v3bwhtvbg" path="res://Levels/map.tscn" id="7_lwo5p"]
 [ext_resource type="PackedScene" uid="uid://brqd6ljovnpa3" path="res://ui/main_ui.tscn" id="8_jutq7"]
 [ext_resource type="Texture2D" uid="uid://d3yqdnyob7ww6" path="res://gray square.png" id="9_jw3lc"]
 
@@ -17,9 +17,7 @@ z_as_relative = false
 [node name="Player" parent="CanvasGroup" instance=ExtResource("1_1o66t")]
 position = Vector2(576, 192)
 
-[node name="Level1" type="Node2D" parent="CanvasGroup"]
-
-[node name="StartingMapOfficial" parent="CanvasGroup/Level1" instance=ExtResource("7_lwo5p")]
+[node name="Map" parent="CanvasGroup" instance=ExtResource("7_lwo5p")]
 position = Vector2(448, 72)
 
 [node name="Background" type="Sprite2D" parent="CanvasGroup"]

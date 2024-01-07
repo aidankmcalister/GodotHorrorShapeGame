@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@onready var global = get_node("/root/Global")
+@onready var light_ray = $LightRayCast
+
 @export var speed = 160
 @export var friction = 7
 @export var acceleration = 5
@@ -8,7 +11,9 @@ var dash_direction = Vector2()
 var dash_speed = 450
 var can_dash = true
 var is_dashing = false
+var is_in_light = false
 
+var ray_length = 96
 var targetRotation = 0.0
 var rotationSpeed= 40.0
 var push_force = 5.0
@@ -26,15 +31,15 @@ var has_dash = true
 
 var has_flashlight = true
 var flashlight_level : float = 100.0
-var flashlight_decrease_rate : float = 1.0
-var flashlight_decrease_interval : float = .1
+var flashlight_change_rate : float = 1.0
+var flashlight_change_interval : float = .1
 var flashlight_time_passed : float = 0.0
 
 
 
 func _physics_process(delta):
 	player_movement(delta)
-	
+	light_raycast()
 	if has_dash:
 		dash_movement(delta)
 		
@@ -119,11 +124,58 @@ func _on_dash_duration_timeout():
 
 func change_flashlight_lvl(delta):
 	flashlight_time_passed += delta
-
-	if flashlight_time_passed >= flashlight_decrease_interval:
-		flashlight_level -= flashlight_decrease_rate
+	#print(flashlight_level)
+	if is_in_light:
+		flashlight_level += flashlight_change_rate
 		flashlight_level = clamp(flashlight_level, 0, 100)
 		flashlight_time_passed = 0.0
-		
+	
+	elif flashlight_time_passed >= flashlight_change_interval:
+		flashlight_level -= flashlight_change_rate
+		flashlight_level = clamp(flashlight_level, 0, 100)
+		flashlight_time_passed = 0.0
 		if $FlashlightBox/Flashlight.energy <= 0:
 			print("game over")
+
+func light_raycast():
+	closest_target(global.LIGHTS)
+	
+	#light_ray.target_position = closest_in(LIGHTS)
+	#if light_ray.is_colliding() and ray.get_collider().is_in_group("light"):
+		#print("colliding with light")
+	#var to_player = player.global_transform.origin - global_transform.origin
+	#ray.target_position = to_player.normalized() * ray_length
+	#if to_player < Vector2(110, 110):
+		#print(ray.get_collider())
+		#if ray.is_colliding() and ray.get_collider() == player:
+			#player.is_in_light = true
+		#else:
+			#player.is_in_light = false
+
+func closest_target(targets):  
+	var closest = null
+	var shortest_distance = 1000000000.0
+	for target in targets:
+		var distance = abs(target.position - position)
+		print(distance)
+		if  distance < shortest_distance:  
+			shortest_distance = distance  
+			closest= target  
+	print("closest target is: ", closest)
+
+func findClosestLight():
+	var closest_light = null
+	var closest_distance = 1000
+
+	for light in global.LIGHTS:
+		var distance = global_position.distance_to(light.position)
+		
+		if distance < closest_distance:
+			closest_distance = distance
+			closest_light = light
+
+	if closest_light != null:
+		print("Closest light name:", closest_light.name)
+	else:
+		print("No lights in the array.")
+

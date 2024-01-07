@@ -14,4 +14,17 @@ texture = ExtResource("1_rh53e")
 texture_scale = 7.0
 
 [node name="Ray" type="RayCast2D" parent="."]
+visible = false
 target_position = Vector2(96, 2.08165e-12)
+
+[node name="flicker_timer_duration" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="flicker_timer_wait" type="Timer" parent="."]
+wait_time = 0.273
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="flicker_timer_duration" to="." method="_on_flicker_timer_duration_timeout"]
+[connection signal="timeout" from="flicker_timer_wait" to="." method="_on_flicker_timer_wait_timeout"]

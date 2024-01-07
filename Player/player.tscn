@@ -129,6 +129,8 @@ one_shot = true
 wait_time = 0.05
 one_shot = true
 
+[node name="LightRayCast" type="RayCast2D" parent="."]
+
 [connection signal="body_entered" from="AreaCollision" to="." method="_on_area_collision_body_entered"]
 [connection signal="body_exited" from="AreaCollision" to="." method="_on_area_collision_body_exited"]
 [connection signal="timeout" from="Dash_Cooldown" to="." method="_on_dash_cooldown_timeout"]
