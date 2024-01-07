@@ -19,8 +19,8 @@ var rotationSpeed= 40.0
 var push_force = 5.0
 var look = true
 var is_grabbing = false
-var direction = 0
- 
+var direction = 0 
+
 ## Items / Abilities 
 
 # Dash
@@ -138,11 +138,21 @@ func change_flashlight_lvl(delta):
 			print("game over")
 
 func light_raycast():
-	## light_ray.target_position = closest global.LIGHTS
-	#light_ray.target_position = get_closest_from_array(global.LIGHTS)
-	pass
+	var current_closest_distance = 1000
+	var current_closest_light_node = null
+	for i in global.LIGHTS.size():
+		if global.LIGHTS[i].global_position.distance_to(global_position) <  current_closest_distance:
+			current_closest_distance = global.LIGHTS[i].global_position.distance_to(global_position)
+			current_closest_light_node = global.LIGHTS[i]
+			light_ray.target_position = global.LIGHTS[i].global_position - light_ray.global_position
+	if light_ray.is_colliding() and light_ray.get_collider().is_in_group("light"):
+		print("colliding with light")
+		is_in_light = true
+	else:
+		is_in_light = false
 
 func get_closest_from_array(array: Array):
+	pass
 	#vector2.distance_to(array of vectors[index]) will work
 	#yup what @expu mentioned, just loop through the list if the distance_to is less than your current shortest stash the index and the new shortest distance
 	#first time through just auto stash the first values because you know it starts as the shortest and everything else has to try and beat it

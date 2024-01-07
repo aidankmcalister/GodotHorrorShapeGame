@@ -53,6 +53,10 @@ texture_scale = 0.04
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCollision"]
 shape = SubResource("CircleShape2D_vrtcj")
 
+[node name="LightRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collide_with_areas = true
+
 [node name="PlayerCamera" type="Camera2D" parent="."]
 
 [node name="Dash_Cooldown" type="Timer" parent="."]
@@ -62,8 +66,6 @@ one_shot = true
 [node name="Dash_Duration" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
-
-[node name="LightRayCast" type="RayCast2D" parent="."]
 
 [connection signal="body_entered" from="AreaCollision" to="." method="_on_area_collision_body_entered"]
 [connection signal="body_exited" from="AreaCollision" to="." method="_on_area_collision_body_exited"]

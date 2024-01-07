@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2ir457pc3e2j"]
+[gd_scene load_steps=4 format=3 uid="uid://d2ir457pc3e2j"]
 
 [ext_resource type="Script" path="res://misc/flickering_light.gd" id="1_kst8i"]
 [ext_resource type="Texture2D" uid="uid://3u2rakmco3v1" path="res://flickering_light.tres" id="1_rh53e"]
 
-[node name="flickering_light" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qn621"]
+radius = 2.0
+
+[node name="flickering_light" type="Node2D" groups=["light"]]
 script = ExtResource("1_kst8i")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -25,6 +28,11 @@ autostart = true
 wait_time = 0.273
 one_shot = true
 autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qn621")
 
 [connection signal="timeout" from="flicker_timer_duration" to="." method="_on_flicker_timer_duration_timeout"]
 [connection signal="timeout" from="flicker_timer_wait" to="." method="_on_flicker_timer_wait_timeout"]
