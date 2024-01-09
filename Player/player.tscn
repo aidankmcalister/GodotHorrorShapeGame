@@ -16,6 +16,7 @@ radius = 17.0
 script = ExtResource("1_l5v4i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
 texture_filter = 1
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_0xu24")
@@ -24,6 +25,7 @@ texture = ExtResource("2_0xu24")
 shape = SubResource("CircleShape2D_mund5")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 2
 position = Vector2(0, -2.27374e-13)
 scale = Vector2(4.5, 4.5)
 energy = 0.8
@@ -37,7 +39,6 @@ script = ExtResource("4_3nal8")
 [node name="FlashlightBox" type="Node2D" parent="."]
 
 [node name="Flashlight" type="PointLight2D" parent="FlashlightBox"]
-show_behind_parent = true
 position = Vector2(7.62939e-06, -4.54747e-12)
 rotation = -1.5708
 scale = Vector2(9.935, 8.78)

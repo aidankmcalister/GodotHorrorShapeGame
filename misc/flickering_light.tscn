@@ -10,6 +10,7 @@ radius = 2.0
 script = ExtResource("1_kst8i")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 3
 color = Color(0.6, 0.0352941, 0.0352941, 1)
 energy = 2.0
 shadow_enabled = true

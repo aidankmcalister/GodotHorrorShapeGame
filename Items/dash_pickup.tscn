@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://uka1ql3olmlw"]
+
+[ext_resource type="Script" path="res://Items/dash_pickup.gd" id="1_7wo38"]
+[ext_resource type="Texture2D" uid="uid://cmb6mpqssh41b" path="res://Shapes/Hexagon.png" id="2_ailvj"]
+[ext_resource type="Texture2D" uid="uid://3u2rakmco3v1" path="res://flickering_light.tres" id="3_4hswd"]
+
+[node name="DashPickup" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_7wo38")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_ailvj")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -8, 7, -4, 7, 4, 0, 8, -7, 4, -7, -4)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.682353, 0.619608, 1)
+energy = 0.0
+texture = ExtResource("3_4hswd")
+texture_scale = 3.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b461v3bwhtvbg"]
+[gd_scene load_steps=13 format=3 uid="uid://b461v3bwhtvbg"]
 
 [ext_resource type="Texture2D" uid="uid://vbyqsx6i6iyx" path="res://16x16Square.png" id="1_7ufby"]
 [ext_resource type="Script" path="res://Levels/map.gd" id="1_jdp0t"]
 [ext_resource type="PackedScene" uid="uid://dqyqxouojomd6" path="res://dash_throughable_wall.tscn" id="3_dj52i"]
 [ext_resource type="PackedScene" uid="uid://d2ir457pc3e2j" path="res://misc/flickering_light.tscn" id="4_4aocd"]
+[ext_resource type="PackedScene" uid="uid://uka1ql3olmlw" path="res://Items/dash_pickup.tscn" id="5_2a8bn"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m0msx"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -100,5 +101,8 @@ position = Vector2(-328, 712)
 
 [node name="flickering_light4" parent="LIGHTS" instance=ExtResource("4_4aocd")]
 position = Vector2(-536, -328)
+
+[node name="DashPickup" parent="." instance=ExtResource("5_2a8bn")]
+position = Vector2(-328, 808)
 
 [connection signal="body_entered" from="DepositZone/Area2D" to="." method="_on_area_2d_body_entered"]

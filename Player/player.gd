@@ -25,7 +25,7 @@ var direction = 0
 
 # Dash
 
-var has_dash = true
+var has_dash = false
 
 # Flashlight
 
@@ -105,8 +105,6 @@ func dash_visual():
 	var tween = create_tween()
 	tween.tween_property($Sprite2D, "scale", Vector2(.04, .04), .1) \
 	.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property($Sprite2D, "modulate", Color(0, 0, 0, 0.5), 0.5) \
-	.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 	tween.connect("finished", on_tween_finished)
 
 func on_tween_finished():
@@ -116,15 +114,13 @@ func _on_dash_duration_timeout():
 	var tween = create_tween()
 	tween.tween_property($Sprite2D, "scale", Vector2(.05, .05), .3) \
 	.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property($Sprite2D, "modulate", Color(255, 255, 255, .5), 0.5) \
-	.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 	is_dashing = false
 
 # Flashlight
 
 func change_flashlight_lvl(delta):
 	flashlight_time_passed += delta
-	print(flashlight_level)
+	#print(flashlight_level)
 	if is_in_light:
 		flashlight_level += flashlight_change_rate
 		flashlight_level = clamp(flashlight_level, 0, 100)

@@ -115,7 +115,7 @@ void fragment()
 	if (roll || noise_opacity > 0.0)
 	{
 		// Create the areas/lines where the texture will be distorted.
-		roll_line = smoothstep(0.3, 0.9, sin(uv.y * roll_size - (time * roll_speed) ) );
+		roll_line = smoothstep(0.1, 1.7, sin(uv.y * roll_size - (time * roll_speed) ) );
 		// Create more lines of a different size and apply to the first set of lines. This creates a bit of variation.
 		roll_line *= roll_line * smoothstep(0.3, 0.9, sin(uv.y * roll_size * roll_variation - (time * roll_speed * roll_variation) ) );
 		// Distort the UV where where the lines are
