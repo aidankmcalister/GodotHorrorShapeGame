@@ -27,5 +27,4 @@ position = Vector2(360, 144)
 texture = ExtResource("9_jw3lc")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="CanvasGroup"]
-visible = false
 color = Color(0, 0, 0, 1)
